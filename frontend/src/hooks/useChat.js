@@ -60,15 +60,10 @@ export function useChat() {
         setMessages([]);
       }
     } catch (err) {
-       console.error("Failed to load conversations:", err);
-
+  console.error("Failed to load conversations:", err);
   setBackendAvailable(false);
-
-  setError(
-    `Backend connection failed: ${err.message}. API URL: ${
-      import.meta.env.VITE_API_URL || "http://localhost:8000/api"}`
-  );
-    } finally {
+  setError(`Failed to load chat data: ${err.message}`);
+} finally {
       setInitialLoading(false);
     }
   }, [currentConversationId]);
