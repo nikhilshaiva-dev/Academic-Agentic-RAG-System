@@ -60,9 +60,14 @@ export function useChat() {
         setMessages([]);
       }
     } catch (err) {
-      console.error("Failed to load conversations:", err);
-      setBackendAvailable(false);
-      setError("Cannot connect to backend server. Make sure the FastAPI service is running at http://localhost:8000.");
+       console.error("Failed to load conversations:", err);
+
+  setBackendAvailable(false);
+
+  setError(
+    `Backend connection failed: ${err.message}. API URL: ${
+      import.meta.env.VITE_API_URL || "http://localhost:8000/api"}`
+  );
     } finally {
       setInitialLoading(false);
     }
