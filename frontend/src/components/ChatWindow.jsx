@@ -4,6 +4,7 @@ import MessageBubble from './MessageBubble';
 import TypingIndicator from './TypingIndicator';
 import EmptyChat from './EmptyChat';
 import ChatInput from './ChatInput';
+import { API_BASE_URL } from '../services/api';
 
 export default function ChatWindow({
   conversation,
@@ -65,7 +66,7 @@ export default function ChatWindow({
         <div className="bg-red-500 text-white px-4 py-2 text-xs flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <AlertCircle className="w-4 h-4 shrink-0" />
-            <span>Backend server is offline. Please make sure FastAPI is running at http://localhost:8000.</span>
+            <span>Backend server is offline or waking up on Render. Please wait a moment and click Retry.</span>
           </div>
           <button
             onClick={onRetryConnection}
