@@ -1,8 +1,12 @@
-export const API_BASE_URL =
+const rawUrl =
   import.meta.env.VITE_API_URL ||
   (import.meta.env.PROD
     ? "https://academic-agentic-rag-system-1.onrender.com/api"
     : "http://localhost:8000/api");
+
+// Normalize to guarantee it ends with /api regardless of how VITE_API_URL was set in Vercel
+const cleanUrl = rawUrl.trim().replace(/\/+$/, "");
+export const API_BASE_URL = cleanUrl.endsWith("/api") ? cleanUrl : `${cleanUrl}/api`;
 
 /**
  * Handle API responses and throw informative errors

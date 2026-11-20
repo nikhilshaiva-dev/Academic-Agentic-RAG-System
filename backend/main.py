@@ -59,6 +59,7 @@ app.add_middleware(
 
 
 @app.get("/api/health", response_model=HealthResponse, tags=["Health"])
+@app.get("/health", response_model=HealthResponse, tags=["Health"])
 async def health_check():
     """Health check endpoint to verify backend status and agent readiness."""
     return HealthResponse(
